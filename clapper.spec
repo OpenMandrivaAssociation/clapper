@@ -1,8 +1,14 @@
+%define api 1
+%define major 0
+%define libname %mklibname clapper %{api} %{major}
+%define girname %mklibname clapper-gir %{api}
+%define devname %mklibname clapper -d
+
 Name:           clapper
 Version:        0.5.2
 Release:        1
 Summary:        A GNOME media player built using GJS with GTK4
-License:        GPL-3.0-or-later
+License:        GPL-3.0
 URL:            https://github.com/Rafostar/clapper
 Source:         https://github.com/Rafostar/clapper/archive/refs/tags/%{version}/%{name}-%{version}.tar.gz
 
@@ -19,39 +25,35 @@ BuildRequires:  pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libadwaita-1)
 
+Requires:	%{girname} = %{version}-%{release}
+Requires:       %{libname} = %{version}
+
 %description
 A GNOME media player built using GJS with GTK4 toolkit and powered by GStreamer with OpenGL rendering.
 
-%package devel
+%package -n %{devname}
 Summary:        Development files for %{name}
-Requires:       %{libname2} = %{version}
+Requires:       %{name} = %{version}
 Requires:       %{libname} = %{version}
-Requires:       %{typelib} = %{version}
+Requires:	%{girname} = %{version}-%{release}
 
-%description devel
-%{summary}.
+%description -n %{devname}
+Development files for Clapper.
 
-%package -n %{typelib}
+%package -n %{girname}
 Summary:        Clapper library typelib
 
-%description -n %{typelib}
+%description  -n %{girname}
 %{summary}.
 
 %package -n %{libname}
-Summary:        Library for %{name}
-Obsoletes:      libgstclapper-1 < 0.5
-Provides:       libgstclapper-1 = 0.5
+Summary:	A GTK4 library to fir Ckaooer
+Group:		System/Libraries
+Requires:	%{name} = %{version}
 
 %description -n %{libname}
-%{summary}.
+This package provides the shared library for Clapper.
 
-%package -n %{libname2}
-Summary:        Library for %{name}
-
-%description -n %{libname2}
-%{summary}.
-
-%lang_package
 
 %prep
 %autosetup -p1
@@ -64,26 +66,21 @@ Summary:        Library for %{name}
 %install
 %meson_install
 
-%find_lang %{appname}
+%find_lang %name
 
-%ldconfig_scriptlets -n %{libname}
-%ldconfig_scriptlets -n %{libname2}
 
-%check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{appname}.desktop
-
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc README.md
 %{_bindir}/%{name}
-%{_bindir}/%{appname}
-%{_datadir}/%{appname}/
-%{_datadir}/glib-2.0/schemas/%{appname}.gschema.xml
+%{_bindir}/com.github.rafostar.Clapper
+%{_datadir}/com.github.rafostar.Clapper
+%{_datadir}/glib-2.0/schemas/com.github.rafostar.Clapper.gschema.xml
 %{_datadir}/icons/hicolor/*/*/*.svg
-%{_datadir}/metainfo/%{appname}.metainfo.xml
-%{_datadir}/mime/packages/%{appname}.xml
-%{_datadir}/applications/%{appname}.desktop
-%{_datadir}/dbus-1/services/%{appname}.service
+%{_datadir}/metainfo/com.github.rafostar.Clapper.metainfo.xml
+%{_datadir}/mime/packages/com.github.rafostar.Clapper.xml
+%{_datadir}/applications/com.github.rafostar.Clapper.desktop
+%{_datadir}/dbus-1/services/com.github.rafostar.Clapper.service
 %dir %{_libdir}/clapper-1.0
 %dir %{_libdir}/clapper-1.0/gst
 %dir %{_libdir}/clapper-1.0/gst/plugin
@@ -93,17 +90,14 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{appname}.desktop
 %{_libdir}/gstreamer-1.0/*.so
 
 %files -n %{libname}
-%dir %{_libdir}/%{appname}
-%{_libdir}/%{appname}/*.so.*
+%dir %{_libdir}/com.github.rafostar.Clapper
+#{_libdir}/com.github.rafostar.Clapper/*.so.*
 
-%files -n %{libname2}
-%{_libdir}/libgstclapperglbaseimporter.so.*
-
-%files -n %{typelib}
+%files -n %{girname}
 %dir %{_libdir}/%{appname}/girepository-1.0
-%{_libdir}/%{appname}/girepository-1.0/GstClapper-1.0.typelib
+%{_libdir}/com.github.rafostar.Clapper/girepository-1.0/GstClapper-1.0.typelib
 
-%files devel
-%{_libdir}/%{appname}/*.so
+%files -n %{devname}
+%{_libdir}/com.github.rafostar.Clapper/*.so
 %{_libdir}/*.so
 %{_datadir}/gir-1.0/GstClapper-1.0.gir
