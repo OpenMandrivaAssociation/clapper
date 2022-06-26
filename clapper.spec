@@ -67,10 +67,10 @@ This package provides the shared library for Clapper.
 %install
 %meson_install
 
-%find_lang %name
+#find_lang %name
 
-
-%files -f %{name}.lang
+#-f %{name}.lang
+%files
 %license COPYING
 %doc README.md
 %{_bindir}/%{name}
