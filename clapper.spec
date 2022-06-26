@@ -67,10 +67,9 @@ This package provides the shared library for Clapper.
 %install
 %meson_install
 
-#find_lang %name
+%find_lang com.github.rafostar.Clapper
 
-#-f %{name}.lang
-%files
+%files -f com.github.rafostar.Clapper.lang
 %license COPYING
 %doc README.md
 %{_bindir}/%{name}
@@ -92,7 +91,8 @@ This package provides the shared library for Clapper.
 
 %files -n %{libname}
 %dir %{_libdir}/com.github.rafostar.Clapper
-#{_libdir}/com.github.rafostar.Clapper/*.so.*
+%{_libdir}/com.github.rafostar.Clapper/*.so.*
+%{_libdir}/libgstclapperglbaseimporter.so.*
 
 %files -n %{girname}
 %dir %{_libdir}/com.github.rafostar.Clapper/girepository-1.0
