@@ -1,7 +1,6 @@
-%define api 1
-%define major 0
-%define libname %mklibname clapper %{api} %{major}
-%define girname %mklibname clapper-gir %{api}
+
+%define libname %mklibname clapper
+%define girname %mklibname clapper-gir
 %define devname %mklibname clapper -d
 
 Name:           clapper
@@ -12,6 +11,7 @@ License:        GPL-3.0
 URL:            https://github.com/Rafostar/clapper
 Source:         https://github.com/Rafostar/clapper/archive/refs/tags/%{version}/%{name}-%{version}.tar.gz
 
+BuildRequires:	appstream-util
 BuildRequires:  desktop-file-utils
 BuildRequires:  meson
 BuildRequires:  pkgconfig
@@ -28,6 +28,14 @@ BuildRequires:  pkgconfig(libadwaita-1)
 
 Requires:	%{girname} = %{version}-%{release}
 Requires:       %{libname} = %{version}
+
+Requires:	gstreamer1.0-plugins-base
+Requires:	gstreamer1.0-plugins-good
+Requires:	gstreamer1.0-plugins-ugly
+# For new va hardware decoding
+Requires:	gstreamer1.0-plugins-bad
+# For old vaapi hardware decoding
+Requires:	gstreamer1.0-vaapi
 
 %description
 A GNOME media player built using GJS with GTK4 toolkit and powered by GStreamer with OpenGL rendering.
