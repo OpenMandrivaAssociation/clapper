@@ -5,7 +5,7 @@
 
 Name:           clapper
 Version:        0.5.2
-Release:        2
+Release:        3
 Summary:        A GNOME media player built using GJS with GTK4
 License:        GPL-3.0
 URL:            https://github.com/Rafostar/clapper
