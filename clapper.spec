@@ -16,6 +16,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  meson
 BuildRequires:  pkgconfig
 BuildRequires:	gjs
+BuildRequires:	gettext
 BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(gio-unix-2.0)
 BuildRequires:  pkgconfig(gjs-1.0)
