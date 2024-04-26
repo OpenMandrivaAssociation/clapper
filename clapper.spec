@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(gstreamer-1.0) >= 1.18.0
 BuildRequires:  pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libadwaita-1)
+BuildRequires:	pkgconfig(microdns)
 BuildRequires:	pkgconfig(vapigen)
 
 Requires:	%{girname} = %{version}-%{release}
