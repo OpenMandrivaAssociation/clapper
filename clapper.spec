@@ -106,9 +106,9 @@ This package provides the shared library for Clapper.
 %{_libdir}/gstreamer-1.0/*.so
 
 %files -n %{libname}
-%dir %{_libdir}/com.github.rafostar.Clapper
-%{_libdir}/com.github.rafostar.Clapper/*.so.*
-%{_libdir}/libgstclapperglbaseimporter.so.*
+#dir %{_libdir}/com.github.rafostar.Clapper
+#{_libdir}/com.github.rafostar.Clapper/*.so.*
+#{_libdir}/libgstclapperglbaseimporter.so.*
 
 %files -n %{girname}
 #dir %{_libdir}/com.github.rafostar.Clapper/girepository-1.0
