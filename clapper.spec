@@ -19,13 +19,13 @@ BuildRequires:	gjs
 BuildRequires:	gettext
 BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(gio-unix-2.0)
-BuildRequires:  pkgconfig(gjs-1.0)
 BuildRequires:  pkgconfig(gmodule-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(gstreamer-1.0) >= 1.18.0
 BuildRequires:  pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libadwaita-1)
+BuildRequires:	pkgconfig(vapigen)
 
 Requires:	%{girname} = %{version}-%{release}
 Requires:       %{libname} = %{version}
@@ -70,7 +70,12 @@ This package provides the shared library for Clapper.
 
 %build
 %meson \
-	%{nil}
+	-Dclapper=enabled \
+ 	-Dclapper-gtk=enabled \
+  	-Dclapper-app=enabled \
+   	-Dgst-plugin=enabled \
+    	-Ddiscoverer=enabled \
+     	-Dmpris=enabled
 %meson_build
 
 %install
