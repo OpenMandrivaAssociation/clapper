@@ -115,6 +115,6 @@ This package provides the shared library for Clapper.
 %{_libdir}/com.github.rafostar.Clapper/girepository-1.0/GstClapper-1.0.typelib
 
 %files -n %{devname}
-%{_libdir}/com.github.rafostar.Clapper/*.so
-%{_libdir}/*.so
-%{_datadir}/gir-1.0/GstClapper-1.0.gir
+#{_libdir}/com.github.rafostar.Clapper/*.so
+#{_libdir}/*.so
+#{_datadir}/gir-1.0/GstClapper-1.0.gir
