@@ -83,9 +83,10 @@ This package provides the shared library for Clapper.
 %install
 %meson_install
 
-%find_lang com.github.rafostar.Clapper
+#find_lang com.github.rafostar.Clapper
 
-%files -f com.github.rafostar.Clapper.lang
+%files 
+#-f com.github.rafostar.Clapper.lang
 %license COPYING
 %doc README.md
 %{_bindir}/%{name}
