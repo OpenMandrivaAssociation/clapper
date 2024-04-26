@@ -87,22 +87,21 @@ This package provides the shared library for Clapper.
 
 %files 
 #-f com.github.rafostar.Clapper.lang
-%license COPYING
 %doc README.md
 %{_bindir}/%{name}
-%{_bindir}/com.github.rafostar.Clapper
-%{_datadir}/com.github.rafostar.Clapper
+#{_bindir}/com.github.rafostar.Clapper
+#{_datadir}/com.github.rafostar.Clapper
 %{_datadir}/glib-2.0/schemas/com.github.rafostar.Clapper.gschema.xml
 %{_datadir}/icons/hicolor/*/*/*.svg
 %{_datadir}/metainfo/com.github.rafostar.Clapper.metainfo.xml
 %{_datadir}/mime/packages/com.github.rafostar.Clapper.xml
 %{_datadir}/applications/com.github.rafostar.Clapper.desktop
 %{_datadir}/dbus-1/services/com.github.rafostar.Clapper.service
-%dir %{_libdir}/clapper-1.0
-%dir %{_libdir}/clapper-1.0/gst
-%dir %{_libdir}/clapper-1.0/gst/plugin
-%dir %{_libdir}/clapper-1.0/gst/plugin/importers
-%{_libdir}/clapper-1.0/gst/plugin/importers/*.so
+#dir %{_libdir}/clapper-1.0
+#dir %{_libdir}/clapper-1.0/gst
+#dir %{_libdir}/clapper-1.0/gst/plugin
+#dir %{_libdir}/clapper-1.0/gst/plugin/importers
+#{_libdir}/clapper-1.0/gst/plugin/importers/*.so
 %dir %{_libdir}/gstreamer-1.0
 %{_libdir}/gstreamer-1.0/*.so
 
