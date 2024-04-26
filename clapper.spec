@@ -77,7 +77,11 @@ This package provides the shared library for Clapper.
   	-Dclapper-app=enabled \
    	-Dgst-plugin=enabled \
     	-Ddiscoverer=enabled \
-     	-Dmpris=enabled
+     	-Dmpris=enabled \
+      	-Dserver=enabled \
+       	-Dglimporter=enabled \
+	-Dgluploader=enabled \
+ 	-Drawimporter=enabled
 %meson_build
 
 %install
