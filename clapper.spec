@@ -4,8 +4,8 @@
 %define devname %mklibname clapper -d
 
 Name:           clapper
-Version:        0.5.2
-Release:        3
+Version:        0.6.0
+Release:        1
 Summary:        A GNOME media player built using GJS with GTK4
 License:        GPL-3.0
 URL:            https://github.com/Rafostar/clapper
@@ -19,13 +19,15 @@ BuildRequires:	gjs
 BuildRequires:	gettext
 BuildRequires:  pkgconfig(gio-2.0)
 BuildRequires:  pkgconfig(gio-unix-2.0)
-BuildRequires:  pkgconfig(gjs-1.0)
 BuildRequires:  pkgconfig(gmodule-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(gstreamer-1.0) >= 1.18.0
 BuildRequires:  pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libadwaita-1)
+BuildRequires:	pkgconfig(libsoup-3.0)
+BuildRequires:	pkgconfig(microdns)
+BuildRequires:	pkgconfig(vapigen)
 
 Requires:	%{girname} = %{version}-%{release}
 Requires:       %{libname} = %{version}
@@ -70,44 +72,53 @@ This package provides the shared library for Clapper.
 
 %build
 %meson \
-	%{nil}
+	-Dclapper=enabled \
+ 	-Dclapper-gtk=enabled \
+  	-Dclapper-app=enabled \
+   	-Dgst-plugin=enabled \
+    	-Ddiscoverer=enabled \
+     	-Dmpris=enabled \
+      	-Dserver=enabled \
+       	-Dglimporter=enabled \
+	-Dgluploader=enabled \
+ 	-Drawimporter=enabled
 %meson_build
 
 %install
 %meson_install
 
-%find_lang com.github.rafostar.Clapper
+%find_lang clapper-app
+%find_lang clapper-gtk
 
-%files -f com.github.rafostar.Clapper.lang
-%license COPYING
+%files -f clapper-app.lang
 %doc README.md
 %{_bindir}/%{name}
-%{_bindir}/com.github.rafostar.Clapper
-%{_datadir}/com.github.rafostar.Clapper
 %{_datadir}/glib-2.0/schemas/com.github.rafostar.Clapper.gschema.xml
 %{_datadir}/icons/hicolor/*/*/*.svg
 %{_datadir}/metainfo/com.github.rafostar.Clapper.metainfo.xml
 %{_datadir}/mime/packages/com.github.rafostar.Clapper.xml
 %{_datadir}/applications/com.github.rafostar.Clapper.desktop
 %{_datadir}/dbus-1/services/com.github.rafostar.Clapper.service
-%dir %{_libdir}/clapper-1.0
-%dir %{_libdir}/clapper-1.0/gst
-%dir %{_libdir}/clapper-1.0/gst/plugin
-%dir %{_libdir}/clapper-1.0/gst/plugin/importers
-%{_libdir}/clapper-1.0/gst/plugin/importers/*.so
+%{_libdir}/clapper-0.0/gst/plugin/importers/
 %dir %{_libdir}/gstreamer-1.0
 %{_libdir}/gstreamer-1.0/*.so
 
-%files -n %{libname}
-%dir %{_libdir}/com.github.rafostar.Clapper
-%{_libdir}/com.github.rafostar.Clapper/*.so.*
-%{_libdir}/libgstclapperglbaseimporter.so.*
+%files -n %{libname} -f clapper-gtk.lang
+%{_libdir}/libclapper-0.0.so.0*
+%{_libdir}/libclapper-gtk-0.0.so.0*
+%{_libdir}/libgstclapperglcontexthandler.so.0*
 
 %files -n %{girname}
-%dir %{_libdir}/com.github.rafostar.Clapper/girepository-1.0
-%{_libdir}/com.github.rafostar.Clapper/girepository-1.0/GstClapper-1.0.typelib
+%{_libdir}/girepository-1.0/Clapper-0.0.typelib
+%{_libdir}/girepository-1.0/ClapperGtk-0.0.typelib
 
 %files -n %{devname}
-%{_libdir}/com.github.rafostar.Clapper/*.so
-%{_libdir}/*.so
-%{_datadir}/gir-1.0/GstClapper-1.0.gir
+%{_includedir}/clapper-0.0/
+%{_libdir}/libclapper-0.0.so
+%{_libdir}/libclapper-gtk-0.0.so
+%{_libdir}/libgstclapperglcontexthandler.so
+%{_libdir}/pkgconfig/clapper-0.0.pc
+%{_libdir}/pkgconfig/clapper-gtk-0.0.pc
+%{_datadir}/gir-1.0/Clapper-0.0.gir
+%{_datadir}/gir-1.0/ClapperGtk-0.0.gir
+%{_datadir}/vala/vapi/clapper*
