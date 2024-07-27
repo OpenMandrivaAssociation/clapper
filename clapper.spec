@@ -5,7 +5,7 @@
 
 Name:           clapper
 Version:        0.6.1
-Release:        1
+Release:        2
 Summary:        A GNOME media player built using GJS with GTK4
 License:        GPL-3.0
 URL:            https://github.com/Rafostar/clapper
@@ -39,6 +39,8 @@ Requires:	gstreamer1.0-plugins-ugly
 Requires:	gstreamer1.0-plugins-bad
 # For old vaapi hardware decoding
 Requires:	gstreamer1.0-vaapi
+# For aac + h264
+Requires:	gstreamer1.0-libav
 
 %description
 A GNOME media player built using GJS with GTK4 toolkit and powered by GStreamer with OpenGL rendering.
