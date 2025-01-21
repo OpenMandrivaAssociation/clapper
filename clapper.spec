@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:	pkgconfig(libsoup-3.0)
+BuildRequires:	pkgconfig(libpeas-2)
 BuildRequires:	pkgconfig(microdns)
 BuildRequires:	pkgconfig(vapigen)
 
