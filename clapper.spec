@@ -4,13 +4,14 @@
 %define devname %mklibname clapper -d
 
 Name:           clapper
-Version:        0.8.0
-Release:        2
+Version:        0.10.0
+Release:        1
 Summary:        A GNOME media player built using GJS with GTK4
 License:        GPL-3.0
 URL:            https://github.com/Rafostar/clapper
-Source:         https://github.com/Rafostar/clapper/archive/refs/tags/%{version}/%{name}-%{version}.tar.gz
+Source0:         https://github.com/Rafostar/clapper/archive/refs/tags/%{version}/%{name}-%{version}.tar.gz
 
+BuildRequires:	appstream
 BuildRequires:	appstream-util
 BuildRequires:  desktop-file-utils
 BuildRequires:  meson
@@ -31,7 +32,8 @@ BuildRequires:	pkgconfig(microdns)
 BuildRequires:	pkgconfig(vapigen)
 
 Requires:	%{girname} = %{version}-%{release}
-Requires:       %{libname} = %{version}
+Requires:   %{libname} = %{version}
+Recommends:	clapper-enhancers
 
 Requires:	gstreamer1.0-plugins-base
 Requires:	gstreamer1.0-plugins-good
@@ -79,10 +81,10 @@ This package provides the shared library for Clapper.
  	-Dclapper-gtk=enabled \
   	-Dclapper-app=enabled \
    	-Dgst-plugin=enabled \
-    	-Ddiscoverer=enabled \
-     	-Dmpris=enabled \
-      	-Dserver=enabled \
-       	-Dglimporter=enabled \
+    -Ddiscoverer=enabled \
+    -Dmpris=enabled \
+    -Dserver=enabled \
+	-Dglimporter=enabled \
 	-Dgluploader=enabled \
  	-Drawimporter=enabled
 %meson_build
